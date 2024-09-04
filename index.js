@@ -14,49 +14,39 @@ import { deleteTask } from './js/deleteTask.js'
 
 export const list = []
 
-formHigh.addEventListener('submit', function (event) {
+function handleFormSubmit(event, priority) {
 	event.preventDefault()
 	const taskText = toDoInput.value.trim()
 
 	if (taskText) {
-		addTask(taskText, PRIORITY.HIGH)
+		addTask(taskText, priority)
 		toDoInput.value = ''
 		toDoInput.focus()
 		renderTasks()
 	}
+}
+
+formHigh.addEventListener('submit', function (event) {
+	handleFormSubmit(event, PRIORITY.HIGH)
 })
 
 formLow.addEventListener('submit', function (event) {
-	event.preventDefault()
-	const taskText = toDoInput.value.trim()
-
-	if (taskText) {
-		addTask(taskText, PRIORITY.HIGH)
-		toDoInput.value = ''
-		toDoInput.focus()
-		renderTasks()
-	}
+	handleFormSubmit(event, PRIORITY.LOW)
 })
 
-highPriorityList.addEventListener('click', function (event) {
+function handleTaskDelete(event) {
 	if (event.target.classList.contains('todo__close')) {
 		const toDoItem = event.target.closest('.todo__item')
 		const taskName = toDoItem.querySelector('.todo__text').textContent
 		deleteTask(taskName)
 		renderTasks()
 	}
-})
+}
 
-lowPriorityList.addEventListener('click', function (event) {
-	if (event.target.classList.contains('todo__close')) {
-		const toDoItem = event.target.closest('.todo__item')
-		const taskName = toDoItem.querySelector('.todo__text').textContent
-		deleteTask(taskName)
-		renderTasks()
-	}
-})
+highPriorityList.addEventListener('click', handleTaskDelete)
+lowPriorityList.addEventListener('click', handleTaskDelete)
 
-highPriorityList.addEventListener('change', function (event) {
+function handleTaskChange(event) {
 	if (event.target.classList.contains('todo__checkbox')) {
 		const name = event.target
 			.closest('.todo__item')
@@ -65,18 +55,11 @@ highPriorityList.addEventListener('change', function (event) {
 		changeStatus(name, status)
 		renderTasks()
 	}
-})
+}
 
-lowPriorityList.addEventListener('change', function (event) {
-	if (event.target.classList.contains('todo__checkbox')) {
-		const name = event.target
-			.closest('.todo__item')
-			.querySelector('.todo__text').textContent
-		const status = event.target.checked ? STATUS.DONE : STATUS.IN_PROGRESS
-		changeStatus(name, status)
-		renderTasks()
-	}
-})
+highPriorityList.addEventListener('change', handleTaskChange)
+
+lowPriorityList.addEventListener('change', handleTaskChange)
 
 function clearList() {
 	highPriorityList.innerHTML = ''
