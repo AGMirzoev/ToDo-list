@@ -3,6 +3,7 @@ import { changeStatus } from './js/changeStatus.js'
 import {
 	PRIORITY,
 	STATUS,
+	formHigh,
 	formLow,
 	highPriorityList,
 	lowPriorityList,
