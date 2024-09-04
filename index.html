@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ToDo</title>
+	<link rel="stylesheet" href="./css/reset.css">
+	<link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+	<div class="container">
+		<div class="todo__app">
+			<h1 class="todo__title">high</h1>
+			<form class="todo__form" id="form__high" data-priority="high">
+				<input class="todo__form-input" id="form__input-high" type="text" placeholder="Добавить важных дел">
+				<button class="todo__btn" type="submit"></button>
+			</form>
+
+			<ul class="todo__list" id="todo__list-high">
+			</ul>
+
+			<h2 class="todo__title">low</h2>
+			<form class="todo__form" id="form__low" data-priority="low">
+				<input class="todo__form-input" id="form__input-low" type="text" placeholder="Добавить">
+				<button class="todo__btn" type="submit"></button>
+			</form>
+			<ul class="todo__list" id="todo__list-low">
+			</ul>
+		</div>
+	</div>
+
+	<script type="module" src="index.js"></script>
+</body>
+
+</html>
