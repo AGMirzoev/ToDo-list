@@ -7,7 +7,7 @@ import {
 	formLow,
 	highPriorityList,
 	lowPriorityList,
-	toDoInput,
+	toDoInputs,
 } from './js/constants.js'
 import { createDomElement } from './js/createDomElement.js'
 import { deleteTask } from './js/deleteTask.js'
@@ -16,14 +16,17 @@ export const list = []
 
 function handleFormSubmit(event, priority) {
 	event.preventDefault()
-	const taskText = toDoInput.value.trim()
 
-	if (taskText) {
-		addTask(taskText, priority)
-		toDoInput.value = ''
-		toDoInput.focus()
-		renderTasks()
-	}
+	toDoInputs.forEach(input => {
+		const taskText = input.value.trim()
+		if (taskText) {
+			addTask(taskText, priority)
+			input.value = ''
+			input.focus()
+		}
+	})
+
+	renderTasks()
 }
 
 formHigh.addEventListener('submit', function (event) {

@@ -11,5 +11,6 @@ export function addTask(taskText, priority) {
 		priority: priority,
 		status: STATUS.IN_PROGRESS,
 	}
+
 	list.push(newTask)
 }
