@@ -9,6 +9,7 @@ import {
 } from './js/constants.js'
 import { createDomElement } from './js/createDomElement.js'
 import { addTask, changeStatus, deleteTask } from './js/operations.js'
+import { temporaryTasks } from './js/temporaryTasks.js'
 
 import tasks from './tasks.json' with { type: 'json' }
 export const list = tasks.list
@@ -68,13 +69,15 @@ function clearList() {
 }
 
 function renderTasks() {
-	clearList()
-	list.forEach(task => {
-		createDomElement(
-			task,
-			task.priority === PRIORITY.HIGH ? highPriorityList : lowPriorityList
-		)
-	})
+  list.length = 0; 
+  Array.prototype.push.apply(list, temporaryTasks); 
+
+  clearList();
+  list.forEach(task => {
+    createDomElement(
+      task, task.priority === PRIORITY.HIGH ? highPriorityList : lowPriorityList
+    );
+  });
 }
 
 window.onload = renderTasks

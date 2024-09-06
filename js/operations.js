@@ -1,8 +1,8 @@
-import { list } from './../index.js'
 import { STATUS } from './constants.js'
+import { temporaryTasks } from './temporaryTasks.js'
 
 function stringConverter(taskText) {
-	if (list.some(task => task.name === taskText)) {
+	if (temporaryTasks.some(task => task.name === taskText)) {
 		throw new Error('Задача с таким названием уже существует')
 	}
 
@@ -27,18 +27,18 @@ export function addTask(taskText, priority) {
 		status: STATUS.IN_PROGRESS,
 	}
 
-	list.push(newTask)
+	temporaryTasks.push(newTask)
 }
 
 export function deleteTask(taskName) {
-	const taskIndex = list.findIndex(item => item.name === taskName)
+	const taskIndex = temporaryTasks.findIndex(item => item.name === taskName)
 	if (taskIndex !== -1) {
-		list.splice(taskIndex, 1)
+		temporaryTasks.splice(taskIndex, 1)
 	}
 }
 
 export function changeStatus(name, status) {
-	const task = list.find(item => item.name === name)
+	const task = temporaryTasks.find(item => item.name === name)
 	if (task) {
 		task.status = status
 	}
