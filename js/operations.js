@@ -32,8 +32,9 @@ export function addTask(taskText, priority) {
 
 export function deleteTask(taskName) {
 	const taskIndex = list.findIndex(item => item.name === taskName)
-
-	list.splice(taskIndex, 1)
+	if (taskIndex !== -1) {
+		list.splice(taskIndex, 1)
+	}
 }
 
 export function changeStatus(name, status) {

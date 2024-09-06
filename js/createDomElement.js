@@ -1,3 +1,5 @@
+import { STATUS } from './constants.js'
+
 export function createDomElement(task, toDoList) {
 	const toDoItem = document.createElement('li')
 	const toDoLabel = document.createElement('label')
@@ -15,6 +17,8 @@ export function createDomElement(task, toDoList) {
 	toDoBtn.classList.add('todo__btn', 'todo__close')
 
 	toDoText.textContent = task.name
+	toDoInput.checked = task.status === STATUS.DONE
+
 	toDoList.appendChild(toDoItem)
 	toDoItem.appendChild(toDoLabel)
 	toDoLabel.appendChild(toDoInput)

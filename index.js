@@ -10,7 +10,7 @@ import {
 import { createDomElement } from './js/createDomElement.js'
 import { addTask, changeStatus, deleteTask } from './js/operations.js'
 
-import tasks from './tasks.json' with { type: "json" }
+import tasks from './tasks.json' with { type: 'json' }
 export const list = tasks.list
 
 function handleFormSubmit(event, priority) {
@@ -60,7 +60,6 @@ function handleTaskChange(event) {
 }
 
 highPriorityList.addEventListener('change', handleTaskChange)
-
 lowPriorityList.addEventListener('change', handleTaskChange)
 
 function clearList() {
@@ -69,10 +68,13 @@ function clearList() {
 }
 
 function renderTasks() {
-  clearList();
-  list.forEach(task => {
-    createDomElement(task, task.priority === PRIORITY.HIGH ? highPriorityList : lowPriorityList);
-  });
+	clearList()
+	list.forEach(task => {
+		createDomElement(
+			task,
+			task.priority === PRIORITY.HIGH ? highPriorityList : lowPriorityList
+		)
+	})
 }
 
-window.onload = renderTasks;
+window.onload = renderTasks
