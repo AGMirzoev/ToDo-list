@@ -13,6 +13,7 @@ import { temporaryTasks } from './js/temporaryTasks.js'
 
 import tasks from './tasks.json' with { type: 'json' }
 export const list = tasks.list
+temporaryTasks.push(...list); 
 
 function handleFormSubmit(event, priority) {
 	event.preventDefault()
@@ -69,11 +70,8 @@ function clearList() {
 }
 
 function renderTasks() {
-  list.length = 0; 
-  Array.prototype.push.apply(list, temporaryTasks); 
-
   clearList();
-  list.forEach(task => {
+  temporaryTasks.forEach(task => {
     createDomElement(
       task, task.priority === PRIORITY.HIGH ? highPriorityList : lowPriorityList
     );
