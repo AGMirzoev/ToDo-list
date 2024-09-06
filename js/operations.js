@@ -29,3 +29,16 @@ export function addTask(taskText, priority) {
 
 	list.push(newTask)
 }
+
+export function deleteTask(taskName) {
+	const taskIndex = list.findIndex(item => item.name === taskName)
+
+	list.splice(taskIndex, 1)
+}
+
+export function changeStatus(name, status) {
+	const task = list.find(item => item.name === name)
+	if (task) {
+		task.status = status
+	}
+}

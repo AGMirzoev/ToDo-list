@@ -1,5 +1,3 @@
-import { addTask } from './js/addTask.js'
-import { changeStatus } from './js/changeStatus.js'
 import {
 	PRIORITY,
 	STATUS,
@@ -10,7 +8,7 @@ import {
 	toDoInputs,
 } from './js/constants.js'
 import { createDomElement } from './js/createDomElement.js'
-import { deleteTask } from './js/deleteTask.js'
+import { addTask, changeStatus, deleteTask } from './js/operations.js'
 
 import tasks from './tasks.json' with { type: "json" }
 export const list = tasks.list
