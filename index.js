@@ -12,7 +12,8 @@ import {
 import { createDomElement } from './js/createDomElement.js'
 import { deleteTask } from './js/deleteTask.js'
 
-export const list = []
+import tasks from './tasks.json' with { type: "json" }
+export const list = tasks.list
 
 function handleFormSubmit(event, priority) {
 	event.preventDefault()
