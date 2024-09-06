@@ -69,12 +69,10 @@ function clearList() {
 }
 
 function renderTasks() {
-	clearList()
-	list.forEach(task => {
-		if (task.priority === PRIORITY.HIGH) {
-			createDomElement(task, highPriorityList)
-		} else {
-			createDomElement(task, lowPriorityList)
-		}
-	})
+  clearList();
+  list.forEach(task => {
+    createDomElement(task, task.priority === PRIORITY.HIGH ? highPriorityList : lowPriorityList);
+  });
 }
+
+window.onload = renderTasks;
