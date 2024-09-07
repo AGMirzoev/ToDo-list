@@ -11,10 +11,6 @@ import { createDomElement } from './js/createDomElement.js'
 import { addTask, changeStatus, deleteTask } from './js/operations.js'
 import { temporaryTasks } from './js/temporaryTasks.js'
 
-import tasks from './tasks.json' with { type: 'json' }
-export const list = tasks.list
-temporaryTasks.push(...list); 
-
 function handleFormSubmit(event, priority) {
 	event.preventDefault()
 
@@ -61,8 +57,8 @@ function handleTaskChange(event) {
 	}
 }
 
-highPriorityList.addEventListener('change', handleTaskChange)
-lowPriorityList.addEventListener('change', handleTaskChange)
+highPriorityList.addEventListener('click', handleTaskChange)
+lowPriorityList.addEventListener('click', handleTaskChange)
 
 function clearList() {
 	highPriorityList.innerHTML = ''
@@ -70,12 +66,14 @@ function clearList() {
 }
 
 function renderTasks() {
-  clearList();
-  temporaryTasks.forEach(task => {
-    createDomElement(
-      task, task.priority === PRIORITY.HIGH ? highPriorityList : lowPriorityList
-    );
-  });
+	clearList()
+	temporaryTasks.forEach(task => {
+		if (task.priority === PRIORITY.HIGH) {
+			createDomElement(task, highPriorityList)
+		} else {
+			createDomElement(task, lowPriorityList)
+		}
+	})
 }
 
 window.onload = renderTasks
