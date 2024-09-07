@@ -11,6 +11,9 @@ import { createDomElement } from './js/createDomElement.js'
 import { addTask, changeStatus, deleteTask } from './js/operations.js'
 import { temporaryTasks } from './js/temporaryTasks.js'
 
+import tasks from './tasks.json' with { type: 'json' }
+tasks.list.forEach(task => temporaryTasks.push(task));
+
 function handleFormSubmit(event, priority) {
 	event.preventDefault()
 
@@ -47,18 +50,17 @@ highPriorityList.addEventListener('click', handleTaskDelete)
 lowPriorityList.addEventListener('click', handleTaskDelete)
 
 function handleTaskChange(event) {
-	if (event.target.classList.contains('todo__checkbox')) {
-		const name = event.target
-			.closest('.todo__item')
-			.querySelector('.todo__text').textContent
+	if (event.target.classList.contains('todo__input')) {
+		const toDoItem = event.target.closest('.todo__item')
+		const name = toDoItem.querySelector('.todo__text').textContent
 		const status = event.target.checked ? STATUS.DONE : STATUS.IN_PROGRESS
 		changeStatus(name, status)
 		renderTasks()
 	}
 }
 
-highPriorityList.addEventListener('click', handleTaskChange)
-lowPriorityList.addEventListener('click', handleTaskChange)
+highPriorityList.addEventListener('change', handleTaskChange)
+lowPriorityList.addEventListener('change', handleTaskChange)
 
 function clearList() {
 	highPriorityList.innerHTML = ''
